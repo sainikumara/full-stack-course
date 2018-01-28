@@ -50,6 +50,7 @@ const Statistics = (props) => {
   let palautteidenLukumaara = props.hyva + props.neutraali + props.huono
   let keskiarvo = 0
   let positiivistenOsuus = 0
+  
   if (palautteidenLukumaara !== 0) {
     keskiarvo = (props.hyva - props.huono) / palautteidenLukumaara
     keskiarvo = keskiarvo.toFixed(1)
@@ -58,14 +59,17 @@ const Statistics = (props) => {
 
     return (
       <div>
-        <Statistic text='hyvä' value={props.hyva} />
-        <Statistic text='neutraali' value={props.neutraali} />
-        <Statistic text='huono' value={props.huono} />
-        <Statistic text='keskiarvo' value={keskiarvo} />
-        <Statistic text='positiivisia' value={positiivistenOsuus} />
+        <table>
+          <Statistic text='hyvä' value={props.hyva} />
+          <Statistic text='neutraali' value={props.neutraali} />
+          <Statistic text='huono' value={props.huono} />
+          <Statistic text='keskiarvo' value={keskiarvo} />
+          <Statistic text='positiivisia' value={positiivistenOsuus} />
+        </table>
       </div>
     )
   }
+
   return (
       <div>
         Palautteita ei ole vielä annettu.
@@ -75,9 +79,9 @@ const Statistics = (props) => {
 
 const Statistic = (props) => {
   return (
-    <div>
-      <p>{props.text} {props.value}</p>
-    </div>
+    <tbody>
+      <tr><td>{props.text}</td><td>{props.value}</td></tr>
+    </tbody>
   )
 }
 
