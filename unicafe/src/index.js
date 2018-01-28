@@ -64,18 +64,23 @@ const Statistics = (props) => {
   let positiivistenOsuus = 0
   if (palautteidenLukumaara !== 0) {
     keskiarvo = (props.hyva - props.huono) / palautteidenLukumaara
+    keskiarvo = keskiarvo.toFixed(1)
     positiivistenOsuus = props.hyva / palautteidenLukumaara
-  }
-  keskiarvo = keskiarvo.toFixed(1)
-  positiivistenOsuus = positiivistenOsuus.toFixed(2) + " %"
+    positiivistenOsuus = positiivistenOsuus.toFixed(2) + " %"
 
-  return (
+    return (
       <div>
         <Statistic text='hyvä' value={props.hyva} />
         <Statistic text='neutraali' value={props.neutraali} />
         <Statistic text='huono' value={props.huono} />
         <Statistic text='keskiarvo' value={keskiarvo} />
         <Statistic text='positiivisia' value={positiivistenOsuus} />
+      </div>
+    )
+  }
+  return (
+      <div>
+        Palautteita ei ole vielä annettu.
       </div>
   )
 }
