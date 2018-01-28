@@ -11,33 +11,21 @@ class App extends React.Component {
     }
   }
 
-  kasvataHyvaa = () => {
+  talletaPalaute = (palaute) => {
+    return () => {
       this.setState({
-          hyva: this.state.hyva + 1
+        [palaute]: this.state[palaute] + 1
       })
-  }
-
-  kasvataNeutraalia = () => {
-      this.setState({
-          neutraali: this.state.neutraali + 1
-      })
-  }
-
-  kasvataHuonoa = () => {
-      this.setState({
-          huono: this.state.huono + 1
-      })
+    }
   }
 
   render(){
-    
-    
     return (
       <div>
         <h1>Anna palautetta</h1>
-        <Button action={this.kasvataHyvaa} text='hyvä' />
-        <Button action={this.kasvataNeutraalia} text='neutraali' />
-        <Button action={this.kasvataHuonoa} text='huono' />
+        <Button action={this.talletaPalaute('hyva')} text='hyvä' />
+        <Button action={this.talletaPalaute('neutraali')} text='neutraali' />
+        <Button action={this.talletaPalaute('huono')} text='huono' />
         
         <h1>Statistiikka</h1>
         <Statistics 
@@ -53,7 +41,7 @@ class App extends React.Component {
 const Button = (props) => {
   return (
     <div>
-      <button onClick={props.action}>{props.text}</button>
+      <button onClick={props.action}> {props.text} </button>
     </div>
   )
 }
