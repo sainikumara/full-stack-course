@@ -30,6 +30,14 @@ class App extends React.Component {
   }
 
   render(){
+    let palautteidenLukumaara = this.state.hyva + this.state.neutraali + this.state.huono
+    let keskiarvo = 0
+    let positiivistenOsuus = 0
+    if (palautteidenLukumaara !== 0) {
+      keskiarvo = (this.state.hyva - this.state.huono) / palautteidenLukumaara
+      positiivistenOsuus = this.state.hyva / palautteidenLukumaara
+    }
+    
     return (
       <div>
         <h1>Anna palautetta</h1>
@@ -41,6 +49,8 @@ class App extends React.Component {
         <p>hyva {this.state.hyva}</p>
         <p>neutraali {this.state.neutraali}</p>
         <p>huono {this.state.huono}</p>
+        <p>keskiarvo {keskiarvo.toFixed(1)}</p>
+        <p>positiivisia {positiivistenOsuus.toFixed(2)} %</p>
       </div>
     )
   }
