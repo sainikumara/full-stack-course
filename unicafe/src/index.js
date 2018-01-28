@@ -30,30 +30,62 @@ class App extends React.Component {
   }
 
   render(){
-    let palautteidenLukumaara = this.state.hyva + this.state.neutraali + this.state.huono
-    let keskiarvo = 0
-    let positiivistenOsuus = 0
-    if (palautteidenLukumaara !== 0) {
-      keskiarvo = (this.state.hyva - this.state.huono) / palautteidenLukumaara
-      positiivistenOsuus = this.state.hyva / palautteidenLukumaara
-    }
+    
     
     return (
       <div>
         <h1>Anna palautetta</h1>
-        <button onClick={this.kasvataHyvaa}>hyvä</button>
-        <button onClick={this.kasvataNeutraalia}>neutraali</button>
-        <button onClick={this.kasvataHuonoa}>huono</button>
+        <Button action={this.kasvataHyvaa} text='hyvä' />
+        <Button action={this.kasvataNeutraalia} text='neutraali' />
+        <Button action={this.kasvataHuonoa} text='huono' />
         
         <h1>Statistiikka</h1>
-        <p>hyva {this.state.hyva}</p>
-        <p>neutraali {this.state.neutraali}</p>
-        <p>huono {this.state.huono}</p>
-        <p>keskiarvo {keskiarvo.toFixed(1)}</p>
-        <p>positiivisia {positiivistenOsuus.toFixed(2)} %</p>
+        <Statistics 
+          hyva={this.state.hyva}
+          neutraali={this.state.neutraali}
+          huono={this.state.huono}
+        />
       </div>
     )
   }
+}
+
+const Button = (props) => {
+  return (
+    <div>
+      <button onClick={props.action}>{props.text}</button>
+    </div>
+  )
+}
+
+const Statistics = (props) => {
+  let palautteidenLukumaara = props.hyva + props.neutraali + props.huono
+  let keskiarvo = 0
+  let positiivistenOsuus = 0
+  if (palautteidenLukumaara !== 0) {
+    keskiarvo = (props.hyva - props.huono) / palautteidenLukumaara
+    positiivistenOsuus = props.hyva / palautteidenLukumaara
+  }
+  keskiarvo = keskiarvo.toFixed(1)
+  positiivistenOsuus = positiivistenOsuus.toFixed(2) + " %"
+
+  return (
+      <div>
+        <Statistic text='hyvä' value={props.hyva} />
+        <Statistic text='neutraali' value={props.neutraali} />
+        <Statistic text='huono' value={props.huono} />
+        <Statistic text='keskiarvo' value={keskiarvo} />
+        <Statistic text='positiivisia' value={positiivistenOsuus} />
+      </div>
+  )
+}
+
+const Statistic = (props) => {
+  return (
+    <div>
+      <p>{props.text} {props.value}</p>
+    </div>
+  )
 }
 
 ReactDOM.render(
