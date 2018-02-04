@@ -3,6 +3,7 @@ import Otsikko from './Otsikko';
 import Sisalto from './Sisalto';
 import Yhteensa from './Yhteensa';
 
+// Kaikki ovat omina moduuleinaan nyt. Yolo.
 const Kurssi = (props) => {
     return (
         <div>
