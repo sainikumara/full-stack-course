@@ -27,15 +27,6 @@ const kurssi = {
       }
     ]
 }
-
-// const Yhteensa = (props) => {
-//     let yhteensa = props.osat[0].tehtavia + props.osat[1].tehtavia + props.osat[2].tehtavia
-//     return (
-//         <div>
-//             <p>yhteensä {yhteensa} tehtävää</p>
-//         </div>
-//     )
-// }
   
 ReactDOM.render(
     <App kurssi={kurssi} />,
