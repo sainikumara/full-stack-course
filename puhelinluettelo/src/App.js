@@ -7,13 +7,15 @@ class App extends React.Component {
       persons: [
         { 
           name: 'Arto Hellas',
+          number: '040123456'
         }
       ],
-      newName: ''
+      newName: '',
+      newNumber: ''
     }
   }
 
-  addName = (event) => {
+  addPerson = (event) => {
     event.preventDefault()
 
     if (this.state.persons.every(
@@ -21,13 +23,15 @@ class App extends React.Component {
 
       const personObject = {
         name: this.state.newName,
+        number: this.state.newNumber
       }
 
       const persons = this.state.persons.concat(personObject)
       
       this.setState({
         persons,
-        newName: ''
+        newName: '',
+        newNumber: ''
       })
     }
   }
@@ -35,12 +39,16 @@ class App extends React.Component {
   handleNameChange = (event) => {
     this.setState({ newName: event.target.value })
   }
+
+  handleNumberChange = (event) => {
+    this.setState({ newNumber: event.target.value })
+  }
   
   render() {
     return (
       <div>
         <h2>Puhelinluettelo</h2>
-        <form onSubmit={this.addName}>
+        <form onSubmit={this.addPerson}>
           <div>
             nimi: 
             <input
@@ -49,23 +57,32 @@ class App extends React.Component {
             />
           </div>
           <div>
+            numero: <input 
+            value={this.setState.newNumber}
+            onChange={this.handleNumberChange}
+            />
+          </div>
+          <div>
             <button type="submit">lisää</button>
           </div>
         </form>
         <h2>Numerot</h2>
-        <ul>
-          {this.state.persons.map(person => <Name key={person.name} name={person.name} />)}
-        </ul>
+        <table>
+          {this.state.persons.map(
+            person => <Person key={person.name} person={person} />
+            )}
+        </table>
       </div>
     )
   }
 }
 
-const Name = (props) => {
+const Person = (props) => {
   return (
-    <div> 
-      <p> {props.name} </p>
-    </div>
+    <tbody> 
+      <tr><td> {props.person.name} </td>
+      <td> {props.person.number} </td></tr>
+    </tbody>
   )
 }
 
