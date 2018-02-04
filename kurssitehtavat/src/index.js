@@ -2,8 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 
-const kurssi = {
+const kurssit = [
+  {
     nimi: 'Half Stack -sovelluskehitys',
+    id: 1,
     osat: [
       {
         nimi: 'Reactin perusteet',
@@ -26,10 +28,27 @@ const kurssi = {
         id: 4
       }
     ]
-}
+  },
+  {
+    nimi: 'Node.js',
+    id: 2,
+    osat: [
+      {
+        nimi: 'Routing',
+        tehtavia: 3,
+        id: 1
+      },
+      {
+        nimi: 'Middlewaret',
+        tehtavia: 7,
+        id: 2
+      }
+    ]
+  }
+]
   
 ReactDOM.render(
-    <App kurssi={kurssi} />,
+    <App kurssit={kurssit} />,
     document.getElementById('root')
 )
 

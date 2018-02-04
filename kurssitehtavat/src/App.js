@@ -1,10 +1,10 @@
 import React from 'react';
 import Kurssi from './components/Kurssi';
 
-const App = ({ kurssi }) => {
+const App = ({ kurssit }) => {
     return (
         <div>
-            <Kurssi kurssi={kurssi} />
+            {kurssit.map(kurssi => <Kurssi key={kurssi.id} kurssi={kurssi} />)}
         </div>
     )
 }
