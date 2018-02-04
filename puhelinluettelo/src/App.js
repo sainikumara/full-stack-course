@@ -1,14 +1,15 @@
 import React from 'react';
+import Person from './components/Person'
 
 class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       persons: [
-        { 
-          name: 'Arto Hellas',
-          number: '040123456'
-        }
+        { name: 'Arto Hellas', number: '040-123456' },
+        { name: 'Martti Tienari', number: '040-123456' },
+        { name: 'Arto Järvinen', number: '040-123456' },
+        { name: 'Lea Kutvonen', number: '040-123456' }
       ],
       newName: '',
       newNumber: ''
@@ -75,15 +76,6 @@ class App extends React.Component {
       </div>
     )
   }
-}
-
-const Person = (props) => {
-  return (
-    <tbody> 
-      <tr><td> {props.person.name} </td>
-      <td> {props.person.number} </td></tr>
-    </tbody>
-  )
 }
 
 export default App
