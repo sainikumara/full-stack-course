@@ -1,6 +1,7 @@
 import React from 'react';
-import Person from './components/Person'
-import axios from 'axios'
+import axios from 'axios';
+import Lomake from './components/Lomake';
+import Yhteystiedot from './components/Yhteystiedot';
 
 class App extends React.Component {
   constructor(props) {
@@ -53,34 +54,18 @@ class App extends React.Component {
     return (
       <div>
         <h2>Puhelinluettelo</h2>
-        <form onSubmit={this.addPerson}>
-          <div>
-            nimi: 
-            <input
-              value={this.state.newName}
-              onChange={this.handleNameChange}
-            />
-          </div>
-          <div>
-            numero: <input 
-            value={this.setState.newNumber}
-            onChange={this.handleNumberChange}
-            />
-          </div>
-          <div>
-            <button type="submit">lisää</button>
-          </div>
-        </form>
+        <Lomake 
+          addPerson={this.addPerson}
+          newName={this.state.newName}
+          newNumber={this.setState.newNumber}
+          handleNameChange={this.handleNameChange}
+          handleNumberChange={this.handleNumberChange}
+        />
         <h2>Numerot</h2>
-        <table>
-          {this.state.persons.map(
-            person => <Person key={person.name} person={person} />
-            )}
-        </table>
+        <Yhteystiedot persons={this.state.persons}/>
       </div>
     )
   }
 }
 
 export default App
-
