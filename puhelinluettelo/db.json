@@ -6,19 +6,24 @@
       "id": 4
     },
     {
-      "name": "Arto Hellas",
-      "number": "111 111 111",
-      "id": 5
-    },
-    {
-      "name": "Martti Tienari",
-      "number": "11 11 11 11 11",
-      "id": 6
-    },
-    {
       "name": "Arto Järvinen",
       "number": "777 777 777",
       "id": 7
+    },
+    {
+      "name": "Karri Keinola",
+      "number": "89340345",
+      "id": 8
+    },
+    {
+      "name": "Arto Hellas",
+      "number": "333 333 333",
+      "id": 9
+    },
+    {
+      "name": "Martti Tienari",
+      "number": "111 111 111",
+      "id": 10
     }
   ]
 }
