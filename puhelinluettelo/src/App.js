@@ -27,7 +27,7 @@ class App extends React.Component {
       })
   }
 
-  tryAddinAPerson = (event) => {
+  tryAddingAPerson = (event) => {
     event.preventDefault()
 
     if (this.state.persons.every(
