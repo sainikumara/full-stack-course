@@ -1,29 +1,24 @@
 {
   "persons": [
     {
-      "name": "ölkölk",
-      "number": "ölkölk",
+      "name": "Martti Tienari",
+      "number": "304984968",
+      "id": 2
+    },
+    {
+      "name": "Arto Järvinen",
+      "number": "9048609386",
+      "id": 3
+    },
+    {
+      "name": "Lea Kutvonen",
+      "number": "040-123456",
       "id": 4
     },
     {
-      "name": "ödvksölk",
-      "number": "ölksdövlk",
+      "name": "Arto Hellas",
+      "number": "111 111 111",
       "id": 5
-    },
-    {
-      "name": "ködlkvöl",
-      "number": "ölskdövlk",
-      "id": 6
-    },
-    {
-      "name": "",
-      "number": "",
-      "id": 7
-    },
-    {
-      "name": "södvlkölk",
-      "number": "ölkölk",
-      "id": 8
     }
   ]
 }

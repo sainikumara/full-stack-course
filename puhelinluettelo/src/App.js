@@ -45,7 +45,34 @@ class App extends React.Component {
             newNumber: ''
           })
         })
-      }
+
+    } else {
+      this.updateNumberOfExistingPerson()
+    }
+  }
+
+  updateNumberOfExistingPerson = () => {
+    const personFromDB =
+    this.state.persons.find(
+      person => person.name === this.state.newName
+    )
+    const samePersonDifferentNumber = {
+      name: personFromDB.name,
+      number: this.state.newNumber
+    }
+    personService
+      .update(personFromDB.id, samePersonDifferentNumber)
+      .then(() => {
+        personService
+          .getAll()
+          .then(persons => {
+            this.setState({ 
+              persons,
+              newName: '',
+              newNumber: '' 
+            })
+          })
+      })
   }
 
   deletePerson = (id) => {
