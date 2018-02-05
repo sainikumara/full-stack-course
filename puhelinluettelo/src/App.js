@@ -82,6 +82,25 @@ class App extends React.Component {
               this.setState({onnistuminen: null})
             }, 5000)
           })
+      }).catch(error => {
+        const personObject = {
+          name: this.state.newName,
+          number: this.state.newNumber
+        }
+  
+        personService
+          .create(personObject)
+          .then(newPerson => {
+            this.setState({
+              persons: this.state.persons.concat(newPerson),
+              newName: '',
+              newNumber: '',
+              onnistuminen: 'Lisättiin ' + newPerson.name          
+            })
+            setTimeout(() => {
+              this.setState({onnistuminen: null})
+            }, 5000)
+          })
       })
   }
 
