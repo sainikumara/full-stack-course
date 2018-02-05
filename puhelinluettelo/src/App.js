@@ -2,6 +2,7 @@ import React from 'react';
 import personService from './services/persons'
 import Lomake from './components/Lomake';
 import Yhteystiedot from './components/Yhteystiedot';
+import Notification from './components/Notification';
 
 class App extends React.Component {
   constructor(props) {
@@ -9,7 +10,8 @@ class App extends React.Component {
     this.state = {
       persons: [],
       newName: '',
-      newNumber: ''
+      newNumber: '',
+      onnistuminen: null
     }
   }
 
@@ -42,8 +44,12 @@ class App extends React.Component {
           this.setState({
             persons: this.state.persons.concat(newPerson),
             newName: '',
-            newNumber: ''
+            newNumber: '',
+            onnistuminen: 'Lisättiin ' + newPerson.name          
           })
+          setTimeout(() => {
+            this.setState({onnistuminen: null})
+          }, 5000)
         })
 
     } else {
@@ -69,27 +75,31 @@ class App extends React.Component {
             this.setState({ 
               persons,
               newName: '',
-              newNumber: '' 
+              newNumber: '',
+              onnistuminen: 'Muutettiin henkilön ' + personFromDB.name + ' numero'         
             })
+            setTimeout(() => {
+              this.setState({onnistuminen: null})
+            }, 5000)
           })
       })
   }
 
   deletePerson = (id) => {
-    if (this.state.persons.every(
-      person => person.name !== this.state.newName)) {
+      let personToBeDeleted = this.state.persons.find(person => person.id === id)
       
       personService
         .deleteObject(id)
         .then(() => {
-          
           this.setState({
             persons: this.state.persons.filter(person => person.id !== id),
-            newName: '',
-            newNumber: ''
+            onnistuminen: 'Poistettiin henkilö ' + personToBeDeleted.name  
           })
+          setTimeout(() => {
+            this.setState({onnistuminen: null})
+          }, 5000)
         })
-    }
+    
   }
 
   handleNameChange = (event) => {
@@ -104,6 +114,9 @@ class App extends React.Component {
     return (
       <div>
         <h2>Puhelinluettelo</h2>
+        <Notification
+          message={this.state.onnistuminen}
+        />
         <Lomake 
           addPerson={this.addPerson}
           newName={this.state.newName}
