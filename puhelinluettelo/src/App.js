@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios';
+import personService from './services/persons'
 import Lomake from './components/Lomake';
 import Yhteystiedot from './components/Yhteystiedot';
 
@@ -14,10 +14,14 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    axios
-      .get('http://localhost:3001/persons')
-      .then(response => {
-        this.setState({ persons: response.data })
+    personService
+      .getAll()
+      .then(persons => {
+        this.setState({ 
+          persons,
+          newName: '',
+          newNumber: '' 
+        })
       })
   }
 
@@ -32,14 +36,32 @@ class App extends React.Component {
         number: this.state.newNumber
       }
 
-      axios.post('http://localhost:3001/persons', personObject)
-      .then(response => {
-        this.setState({
-          persons: this.state.persons.concat(response.data),
-          newName: '',
-          newNumber: ''
+      personService
+        .create(personObject)
+        .then(newPerson => {
+          this.setState({
+            persons: this.state.persons.concat(newPerson),
+            newName: '',
+            newNumber: ''
+          })
         })
-      })
+      }
+  }
+
+  deletePerson = (id) => {
+    if (this.state.persons.every(
+      person => person.name !== this.state.newName)) {
+      
+      personService
+        .deleteObject(id)
+        .then(() => {
+          
+          this.setState({
+            persons: this.state.persons.filter(person => person.id !== id),
+            newName: '',
+            newNumber: ''
+          })
+        })
     }
   }
 
@@ -58,12 +80,15 @@ class App extends React.Component {
         <Lomake 
           addPerson={this.addPerson}
           newName={this.state.newName}
-          newNumber={this.setState.newNumber}
+          newNumber={this.state.newNumber}
           handleNameChange={this.handleNameChange}
           handleNumberChange={this.handleNumberChange}
         />
         <h2>Numerot</h2>
-        <Yhteystiedot persons={this.state.persons}/>
+        <Yhteystiedot
+          persons={this.state.persons}
+          delete={this.deletePerson}
+        />
       </div>
     )
   }

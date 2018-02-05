@@ -5,7 +5,11 @@ const Yhteystiedot = (props) => {
     return (
       <table>
         {props.persons.map(
-          person => <Person key={person.name} person={person} />
+          person => <Person 
+            key={person.name} 
+            person={person} 
+            delete={props.delete}
+            />
         )}
       </table>
     )

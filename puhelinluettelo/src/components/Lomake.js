@@ -12,9 +12,10 @@ const Lomake = (props) => {
               />
             </div>
             <div>
-              numero: <input 
-              value={props.newNumber}
-              onChange={props.handleNumberChange}
+              numero: 
+              <input 
+                value={props.newNumber}
+                onChange={props.handleNumberChange}
               />
             </div>
             <div>
